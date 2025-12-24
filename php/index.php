@@ -5,15 +5,14 @@ require 'DB.php';
 $db = new DB();
 $pdo = $db->getPDO();
 
-$stmt = $pdo->prepare('SELECT profile_id, first_name, last_name, headline, user_id FROM Profile');
-$stmt->execute();
-$profiles = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$stmt = $pdo->query('SELECT profile_id, first_name, last_name, headline, user_id FROM Profile');
+$profiles = $stmt->fetchAll();
 ?>
 <!DOCTYPE html>
 <html>
 <head>
 <title>Facundo Lubo Resume Registry</title>
-<link rel="stylesheet" 
+<link rel="stylesheet"
  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 </head>
 <body>
