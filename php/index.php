@@ -3,7 +3,7 @@ session_start();
 require 'DB.php';
 
 $db = new DB();
-$pdo = $db->getPDO();
+$pdo = $db->getPdo();
 
 $stmt = $pdo->query('SELECT profile_id, first_name, last_name, headline, user_id FROM Profile');
 $profiles = $stmt->fetchAll();
@@ -11,9 +11,8 @@ $profiles = $stmt->fetchAll();
 <!DOCTYPE html>
 <html>
 <head>
-<title>Facundo Lubo Resume Registry</title>
-<link rel="stylesheet"
- href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<title>Taha Goulzima</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 </head>
 <body>
 <div class="container">
@@ -56,6 +55,8 @@ if (!isset($_SESSION['user_id'])) {
         <?php if (isset($_SESSION['user_id']) && $_SESSION['user_id'] == $p['user_id']): ?>
             <a href="edit.php?profile_id=<?= $p['profile_id'] ?>">Edit</a> |
             <a href="delete.php?profile_id=<?= $p['profile_id'] ?>">Delete</a>
+        <?php else: ?>
+            <!-- Empty if not owner -->
         <?php endif; ?>
     </td>
 </tr>
